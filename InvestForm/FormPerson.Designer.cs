@@ -28,6 +28,8 @@
             deleteBtn = new Button();
             cancelBtn = new Button();
             panel1 = new Panel();
+            textBox1 = new TextBox();
+            label1 = new Label();
             label6 = new Label();
             label4 = new Label();
             dbirthDateTimePicker = new DateTimePicker();
@@ -100,6 +102,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(dbirthDateTimePicker);
@@ -127,13 +131,30 @@
             panel1.Controls.Add(label8);
             panel1.Location = new Point(-1, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(398, 500);
+            panel1.Size = new Size(398, 618);
             panel1.TabIndex = 4;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(18, 368);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(273, 27);
+            textBox1.TabIndex = 31;
+            textBox1.TextAlign = HorizontalAlignment.Right;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(297, 368);
+            label1.Name = "label1";
+            label1.Size = new Size(89, 20);
+            label1.TabIndex = 30;
+            label1.Text = "عنوان السكن";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(344, 452);
+            label6.Location = new Point(333, 495);
             label6.Name = "label6";
             label6.Size = new Size(50, 20);
             label6.TabIndex = 29;
@@ -142,7 +163,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(284, 418);
+            label4.Location = new Point(273, 461);
             label4.Name = "label4";
             label4.Size = new Size(110, 20);
             label4.TabIndex = 28;
@@ -150,14 +171,14 @@
             // 
             // dbirthDateTimePicker
             // 
-            dbirthDateTimePicker.Location = new Point(18, 295);
+            dbirthDateTimePicker.Location = new Point(18, 256);
             dbirthDateTimePicker.Name = "dbirthDateTimePicker";
             dbirthDateTimePicker.Size = new Size(238, 27);
             dbirthDateTimePicker.TabIndex = 27;
             // 
             // nicknameTextBox
             // 
-            nicknameTextBox.Location = new Point(18, 344);
+            nicknameTextBox.Location = new Point(201, 538);
             nicknameTextBox.Name = "nicknameTextBox";
             nicknameTextBox.Size = new Size(183, 27);
             nicknameTextBox.TabIndex = 26;
@@ -168,7 +189,7 @@
             // 
             // occupationTextBox
             // 
-            occupationTextBox.Location = new Point(18, 377);
+            occupationTextBox.Location = new Point(201, 571);
             occupationTextBox.Name = "occupationTextBox";
             occupationTextBox.Size = new Size(183, 27);
             occupationTextBox.TabIndex = 25;
@@ -180,7 +201,7 @@
             // genderComboBox
             // 
             genderComboBox.FormattingEnabled = true;
-            genderComboBox.Location = new Point(127, 451);
+            genderComboBox.Location = new Point(116, 494);
             genderComboBox.Name = "genderComboBox";
             genderComboBox.RightToLeft = RightToLeft.Yes;
             genderComboBox.Size = new Size(151, 28);
@@ -189,7 +210,7 @@
             // statusComboBox
             // 
             statusComboBox.FormattingEnabled = true;
-            statusComboBox.Location = new Point(127, 414);
+            statusComboBox.Location = new Point(116, 457);
             statusComboBox.Name = "statusComboBox";
             statusComboBox.RightToLeft = RightToLeft.Yes;
             statusComboBox.Size = new Size(151, 28);
@@ -198,7 +219,7 @@
             // exstCheckBox
             // 
             exstCheckBox.AutoSize = true;
-            exstCheckBox.Location = new Point(234, 370);
+            exstCheckBox.Location = new Point(230, 401);
             exstCheckBox.Name = "exstCheckBox";
             exstCheckBox.RightToLeft = RightToLeft.Yes;
             exstCheckBox.Size = new Size(154, 24);
@@ -209,7 +230,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(301, 295);
+            label12.Location = new Point(299, 263);
             label12.Name = "label12";
             label12.Size = new Size(85, 20);
             label12.TabIndex = 24;
@@ -218,7 +239,7 @@
             // checkBox
             // 
             checkBox.AutoSize = true;
-            checkBox.Location = new Point(228, 340);
+            checkBox.Location = new Point(226, 331);
             checkBox.Name = "checkBox";
             checkBox.RightToLeft = RightToLeft.Yes;
             checkBox.Size = new Size(160, 24);
@@ -230,7 +251,7 @@
             // 
             attrComboBox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             attrComboBox.FormattingEnabled = true;
-            attrComboBox.Location = new Point(18, 256);
+            attrComboBox.Location = new Point(18, 289);
             attrComboBox.Name = "attrComboBox";
             attrComboBox.RightToLeft = RightToLeft.Yes;
             attrComboBox.Size = new Size(238, 28);
@@ -439,5 +460,7 @@
         private DateTimePicker dbirthDateTimePicker;
         private Label label6;
         private Label label4;
+        private TextBox textBox1;
+        private Label label1;
     }
 }
