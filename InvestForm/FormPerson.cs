@@ -197,7 +197,7 @@ namespace Forms {
                     Adrs = adrsTextBox.Text,
                     //Attr = attrComboBox.Text, int??
                     Exst = Convert.ToInt32(exstCheckBox.Checked),
-                    Arch = exstCheckBox.Checked ? null : Convert.ToInt32(archTextBox.Text),
+                    Arch = exstCheckBox.Checked ?  Convert.ToInt32(archTextBox.Text): null,
                     Nickname = nicknameTextBox.Text == "[اللقب]" ? "" : nicknameTextBox.Text,
                     Occupation = occupationTextBox.Text == "[المهنة]" ? "" : occupationTextBox.Text,
                     Idnum = idnumTextBox.Text,
@@ -275,7 +275,7 @@ namespace Forms {
                         person.Adrs = adrsTextBox.Text;
                         //person.Attr = attrComboBox.Text; int??
                         person.Exst = Convert.ToInt32(exstCheckBox.Checked);
-                        person.Arch = exstCheckBox.Checked ? null : Convert.ToInt32(archTextBox.Text);
+                        person.Arch = exstCheckBox.Checked ? Convert.ToInt32(archTextBox.Text) : null;
                         person.Nickname = nicknameTextBox.Text == "[اللقب]" ? "" : nicknameTextBox.Text;
                         person.Occupation = occupationTextBox.Text == "[المهنة]" ? "" : occupationTextBox.Text;
                         person.Idnum = idnumTextBox.Text;
