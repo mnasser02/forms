@@ -236,6 +236,7 @@
             attrComboBox.Size = new Size(238, 28);
             attrComboBox.TabIndex = 23;
             attrComboBox.Text = "مدعي";
+            attrComboBox.SelectedIndexChanged += attrComboBox_SelectedIndexChanged;
             // 
             // residComboBox
             // 
@@ -245,6 +246,7 @@
             residComboBox.RightToLeft = RightToLeft.Yes;
             residComboBox.Size = new Size(238, 28);
             residComboBox.TabIndex = 22;
+            residComboBox.SelectedIndexChanged += residComboBox_SelectedIndexChanged;
             // 
             // pbirthComboBox
             // 
@@ -254,6 +256,7 @@
             pbirthComboBox.RightToLeft = RightToLeft.Yes;
             pbirthComboBox.Size = new Size(238, 28);
             pbirthComboBox.TabIndex = 21;
+            pbirthComboBox.SelectedIndexChanged += pbirthComboBox_SelectedIndexChanged;
             // 
             // label11
             // 
@@ -283,6 +286,7 @@
             nationComboBox.Size = new Size(238, 28);
             nationComboBox.TabIndex = 15;
             nationComboBox.Text = "لبنان";
+            nationComboBox.SelectedIndexChanged += nationComboBox_SelectedIndexChanged;
             // 
             // regTextBox
             // 

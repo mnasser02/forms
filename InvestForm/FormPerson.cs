@@ -16,6 +16,7 @@ namespace Forms {
     public partial class FormPerson : Form {
 
         private InvEntities _context;
+        private int prevIndexNation, prevIndexPbirth, prevIndexResid, prevIndexAttr;
         public FormPerson() {
             InitializeComponent();
             PopulateComboBox();
@@ -73,6 +74,12 @@ namespace Forms {
                 "أرمل"
             };
 
+            var attr = new List<string> {
+              "مدعي", "موقوف", "مشتبه به", "محتجز", "مستجوب", "متهم", "محكوم عليه", "مفقود", "مشار إليه", "متورط", "مشتبه فيه", "مراقب", "متابع", "مطلوب للتحقيق", "محظور السفر", "متورط في قضية", "مرتبط بجريمة", "معتقل", "محكوم عليه بالإعدام", "مُختَفي" };
+
+            attrComboBox.DataSource = attr;
+            attrComboBox.SelectedIndex = -1;
+
             pbirthComboBox.DataSource = pbirths;
             pbirthComboBox.SelectedIndex = -1;
 
@@ -85,6 +92,17 @@ namespace Forms {
             genderComboBox.DataSource = genders;
             genderComboBox.SelectedIndex = -1;
 
+            nationComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            attrComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            pbirthComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            residComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            statusComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            genderComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            prevIndexNation = nationComboBox.SelectedIndex;
+            prevIndexPbirth = pbirthComboBox.SelectedIndex;
+            prevIndexResid = residComboBox.SelectedIndex;
+            prevIndexAttr = attrComboBox.SelectedIndex;
         }
 
         private async void FormPerson_Load(object sender, EventArgs e) {
@@ -125,7 +143,7 @@ namespace Forms {
         private async void insertBtn_Click(object sender, EventArgs e) {
             if (MessageBox.Show("سيتم ادخال المعلومات", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes) {
 
-                if(!verify()) {
+                if (!verify()) {
                     return;
                 }
                 int serialNumber = Convert.ToInt32(serialTextBox.Text);
@@ -206,7 +224,7 @@ namespace Forms {
             if (dataGridView1.SelectedRows.Count > 0) {
                 if (MessageBox.Show("هل تريد تحديث معلومات الشخص؟", "تأكيد", MessageBoxButtons.YesNo) == DialogResult.Yes) {
 
-                    if(!verify()) {
+                    if (!verify()) {
                         return;
                     }
 
@@ -285,6 +303,7 @@ namespace Forms {
             fatherTextBox.Text = "[اسم الأب]";
             motherTextBox.Text = "[اسم الأم]";
             nationComboBox.SelectedIndex = -1;
+
             regTextBox.Text = "[رقم و مكان السجل]";
             pbirthComboBox.SelectedIndex = -1;
             dbirthDateTimePicker.Value = DateTime.Now;
@@ -301,10 +320,12 @@ namespace Forms {
             statusComboBox.SelectedIndex = -1;
             genderComboBox.SelectedIndex = -1;
 
+
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e) {
             if (dataGridView1.SelectedRows.Count > 0) {
+                ResetForm();
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
 
                 serialTextBox.Text = selectedRow.Cells["SERIAL"].Value.ToString();
@@ -438,6 +459,92 @@ namespace Forms {
             if (string.IsNullOrWhiteSpace(occupationTextBox.Text)) {
                 occupationTextBox.Text = "[المهنة]";
             }
+        }
+
+        private void nationComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+            if (nationComboBox.SelectedIndex == prevIndexNation || nationComboBox.SelectedIndex == -1 || prevIndexNation == -1) {
+                prevIndexNation = nationComboBox.SelectedIndex;
+                return;
+            }
+
+            string selectedNation = nationComboBox.Text;
+
+            // Display confirmation dialog to the user
+            DialogResult result = MessageBox.Show($"هل أنت متأكد من رغبتك في تغيير الدولة إلى '{selectedNation}'؟",
+                                                  "تأكيد تغيير الدولة",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
+
+            if (result == DialogResult.No) {
+                nationComboBox.SelectedIndex = prevIndexNation;
+            }
+            else {
+                prevIndexNation = nationComboBox.SelectedIndex;
+            }
+        }
+
+        private void pbirthComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+            if (pbirthComboBox.SelectedIndex == prevIndexPbirth || pbirthComboBox.SelectedIndex == -1 || prevIndexPbirth == -1) {
+                prevIndexPbirth = pbirthComboBox.SelectedIndex;
+                return;
+            }
+
+            string selectedPbirth = pbirthComboBox.Text;
+
+            // Display confirmation dialog to the user
+            DialogResult result = MessageBox.Show($"هل أنت متأكد من رغبتك في تغيير محل الولادة إلى '{selectedPbirth}'؟",
+                                                  "تأكيد تغيير محل الولادة",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
+
+            if (result == DialogResult.No) {
+                pbirthComboBox.SelectedIndex = prevIndexPbirth;
+            }
+            else {
+                prevIndexPbirth = pbirthComboBox.SelectedIndex;
+            }
+        }
+
+        private void residComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+            if (residComboBox.SelectedIndex == prevIndexResid || residComboBox.SelectedIndex == -1 || prevIndexResid == -1) {
+                prevIndexResid = residComboBox.SelectedIndex;
+                return;
+            }
+            string selectedResid = residComboBox.Text;
+
+            // Display confirmation dialog to the user
+            DialogResult result = MessageBox.Show($"هل أنت متأكد من رغبتك في تغيير محل السكن إلى '{selectedResid}'؟",
+                                                  "تأكيد تغيير محل السكن",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
+            if (result == DialogResult.No) {
+                residComboBox.SelectedIndex = prevIndexResid;
+            }
+            else {
+                prevIndexResid = residComboBox.SelectedIndex;
+            }
+
+        }
+
+        private void attrComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+            if (attrComboBox.SelectedIndex == prevIndexAttr || attrComboBox.SelectedIndex == -1 ||  prevIndexAttr == -1) {
+                prevIndexAttr = attrComboBox.SelectedIndex;
+                return;
+            }
+            string selectedAttr = attrComboBox.Text;
+
+            // Display confirmation dialog to the user
+            DialogResult result = MessageBox.Show($"هل أنت متأكد من رغبتك في تغيير الصفة إلى '{selectedAttr}'؟",
+                                                  "تأكيد تغيير الصفة",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
+            if (result == DialogResult.No) {
+                attrComboBox.SelectedIndex = prevIndexAttr;
+            }
+            else {
+                prevIndexAttr = attrComboBox.SelectedIndex;
+            }
+
         }
     }
 }
