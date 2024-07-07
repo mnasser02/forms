@@ -1,4 +1,4 @@
-﻿namespace InvestForm {
+﻿namespace Forms {
     partial class FormInvest {
         /// <summary>
         ///  Required designer variable.

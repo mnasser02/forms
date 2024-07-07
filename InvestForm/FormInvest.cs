@@ -6,7 +6,7 @@ using InvestForm.Repositories;
 using InvestForm.Repositories.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace InvestForm {
+namespace Forms {
     public partial class FormInvest : Form {
 
         private InvEntities _context;
@@ -14,6 +14,7 @@ namespace InvestForm {
             InitializeComponent();
             PopulateComboBox();
             _context = new InvEntities();
+            dataGridView1.ReadOnly = true;
         }
 
         private void PopulateComboBox() {
@@ -56,12 +57,12 @@ namespace InvestForm {
                 _context.Invests.Add(newInvest);
                 await _context.SaveChangesAsync();
                 await LoadInvestigationsAsync();
+                ResetForm();
             }
             else {
                 MessageBox.Show("áŞÏ ŞãÊ ÈÇáäŞÑ İæŞ ÒÑ ÇáÅáÛÇÁ");
             }
 
-            ResetForm();
         }
         private async void editbtn_Click(object sender, EventArgs e) {
             if (dataGridView1.SelectedRows.Count > 0) {
@@ -81,6 +82,7 @@ namespace InvestForm {
                             await _context.SaveChangesAsync();
                             await LoadInvestigationsAsync();
                             MessageBox.Show("Êã ÊÍÏíË ÇáÊÍŞíŞ ÈäÌÇÍ");
+                            ResetForm();
                         }
                         catch (DbUpdateConcurrencyException) {
                             MessageBox.Show("ÇáÓÌá ÇáĞí ÍÇæáÊ ÊÚÏíáå Êã ÊÚÏíáå ÈæÇÓØÉ ãÓÊÎÏã ÂÎÑ ÈÚÏ Ãä ÍÕáÊ Úáì ÇáŞíãÉ ÇáÃÕáíÉ. Êã ÅáÛÇÁ ÚãáíÉ ÇáÊÚÏíá");
@@ -94,6 +96,7 @@ namespace InvestForm {
             else {
                 MessageBox.Show("ÇáÑÌÇÁ ÊÍÏíÏ ÊÍŞíŞ áÊÚÏíáå");
             }
+
 
         }
 
@@ -113,9 +116,10 @@ namespace InvestForm {
                         MessageBox.Show("áã íÊã ÇáÚËæÑ Úáì ÇáÊÍŞíŞ");
                     }
                 }
+
             }
             else {
-                MessageBox.Show("ÇáÑÌÇÁ ÊÍÏíÏ ÊÍŞíŞ áÍĞİå.");
+                MessageBox.Show("ÇáÑÌÇÁ ÊÍÏíÏ ÊÍŞíŞ áÍĞİå");
             }
         }
 
