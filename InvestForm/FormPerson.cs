@@ -19,35 +19,105 @@ namespace Forms {
         private int prevIndexNation, prevIndexPbirth, prevIndexResid, prevIndexAttr;
         public FormPerson() {
             InitializeComponent();
-            PopulateComboBox();
+            InitComboBoxes();
             _context = new InvEntities();
             dataGridView1.ReadOnly = true;
         }
 
-        private void PopulateComboBox() {
-            var genders = new List<string> {
-                "ذكر",
-                "أنثى"
+        private void InitComboBoxes() {
+            populatenationComboBox();
+            populateresidComboBox();
+            populatepbirthComboBox();
+            populateattrComboBox();
+            populatestatusComboBox();
+            populategenderComboBox();
+
+            nationComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            attrComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            pbirthComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            residComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            statusComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            genderComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            prevIndexNation = nationComboBox.SelectedIndex;
+            prevIndexPbirth = pbirthComboBox.SelectedIndex;
+            prevIndexResid = residComboBox.SelectedIndex;
+            prevIndexAttr = attrComboBox.SelectedIndex;
+        }
+
+        private void populatenationComboBox() {
+            var nations = new List<string> {
+                "لبنان",
+                "سوريا",
+                "فلسطين",
+                "العراق",
+                "الأردن",
+                "مصر",
+                "السعودية",
+                "الكويت",
+                "الإمارات",
+                "قطر",
+                "البحرين",
+                "عمان",
+                "اليمن",
+                "السودان",
+                "تونس",
+                "الجزائر",
+                "المغرب",
+                "ليبيا",
+                "موريتانيا",
+                "جيبوتي",
+                "الصومال",
+                "جزر القمر",
+                "مالي",
+                "النيجر",
+                "تشاد",
+                "الكاميرون",
+                "الكونغو",
+                "الجمهورية الإفريقية",
+                "السودان الجنوبي",
+                "أنغولا",
+                "زامبيا",
+                "زيمبابوي",
+                "موزمبيق",
+                "مدغشقر",
+                "موريشيوس",
+                "الصحراء الغربية",
+                "الصومال",
+                "إريتريا",
+                "أثيوبيا",
+                "جيبوتي",
+                "السيشل",
+                "الصومال",
+                "أوغندا",
+                "رواندا",
+                "بوروندي",
+                "الكونغو",
+                "الجمهورية الإفريقية",
+                "الكاميرون",
+                "الغابون",
+                "التشاد",
+                "الكوت ديفوار",
+                "غينيا",
+                "غينيا بيساو",
+                "سيراليون",
+                "ليبيريا",
+                "الغانا",
             };
 
-            var pbirths = new List<string> {
-                "بيروت",
-                "طرابلس",
-                "صيدا",
-                "صور",
-                "جبيل",
-                "بعلبك",
-                "زحلة",
-                "البترون",
-                "الشوف",
-                "النبطية",
-                "عاليه",
-                "بشري",
-                "الكورة",
-                "جزين",
-                "بنت جبيل"
-            };
+            nationComboBox.DataSource = nations;
+            nationComboBox.SelectedIndex = -1;
+        }
 
+        private void populateattrComboBox() {
+            var attr = new List<string> {
+              "مدعي", "موقوف", "مشتبه به", "محتجز", "مستجوب", "متهم", "محكوم عليه", "مفقود", "مشار إليه", "متورط", "مشتبه فيه", "مراقب", "متابع", "مطلوب للتحقيق", "محظور السفر", "متورط في قضية", "مرتبط بجريمة", "معتقل", "محكوم عليه بالإعدام", "مُختَفي" };
+
+            attrComboBox.DataSource = attr;
+            attrComboBox.SelectedIndex = -1;
+        }
+
+        private void populateresidComboBox() {
             var resids = new List<string> {
                 "بيروت",
                 "طرابلس",
@@ -66,7 +136,34 @@ namespace Forms {
                 "بنت جبيل"
             };
 
+            residComboBox.DataSource = resids;
+            residComboBox.SelectedIndex = -1;
+        }
 
+        private void populatepbirthComboBox() {
+            var pbirths = new List<string> {
+                "بيروت",
+                "طرابلس",
+                "صيدا",
+                "صور",
+                "جبيل",
+                "بعلبك",
+                "زحلة",
+                "البترون",
+                "الشوف",
+                "النبطية",
+                "عاليه",
+                "بشري",
+                "الكورة",
+                "جزين",
+                "بنت جبيل"
+            };
+
+            pbirthComboBox.DataSource = pbirths;
+            pbirthComboBox.SelectedIndex = -1;
+        }
+
+        private void populatestatusComboBox() {
             var statuses = new List<string> {
                 "أعزب",
                 "متزوج",
@@ -74,36 +171,17 @@ namespace Forms {
                 "أرمل"
             };
 
-            var attr = new List<string> {
-              "مدعي", "موقوف", "مشتبه به", "محتجز", "مستجوب", "متهم", "محكوم عليه", "مفقود", "مشار إليه", "متورط", "مشتبه فيه", "مراقب", "متابع", "مطلوب للتحقيق", "محظور السفر", "متورط في قضية", "مرتبط بجريمة", "معتقل", "محكوم عليه بالإعدام", "مُختَفي" };
-
-            attrComboBox.DataSource = attr;
-            attrComboBox.SelectedIndex = -1;
-
-            pbirthComboBox.DataSource = pbirths;
-            pbirthComboBox.SelectedIndex = -1;
-
-            residComboBox.DataSource = resids;
-            residComboBox.SelectedIndex = -1;
-
             statusComboBox.DataSource = statuses;
             statusComboBox.SelectedIndex = -1;
-
-            genderComboBox.DataSource = genders;
-            genderComboBox.SelectedIndex = -1;
-
-            nationComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            attrComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            pbirthComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            residComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            statusComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            genderComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            prevIndexNation = nationComboBox.SelectedIndex;
-            prevIndexPbirth = pbirthComboBox.SelectedIndex;
-            prevIndexResid = residComboBox.SelectedIndex;
-            prevIndexAttr = attrComboBox.SelectedIndex;
         }
+
+        private void populategenderComboBox() {
+            var populors = new List<string> {
+                "ذكر",
+                "أنثى"
+            };
+        }
+
 
         private async void FormPerson_Load(object sender, EventArgs e) {
             await LoadPersonsAsync();
