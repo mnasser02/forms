@@ -28,7 +28,13 @@
             deleteBtn = new Button();
             cancelBtn = new Button();
             panel1 = new Panel();
-            textBox1 = new TextBox();
+            label5 = new Label();
+            archTextBox = new TextBox();
+            idnumTextBox = new TextBox();
+            label3 = new Label();
+            label2 = new Label();
+            mobilenoTextBox = new TextBox();
+            adrsTextBox = new TextBox();
             label1 = new Label();
             label6 = new Label();
             label4 = new Label();
@@ -39,7 +45,6 @@
             statusComboBox = new ComboBox();
             exstCheckBox = new CheckBox();
             label12 = new Label();
-            checkBox = new CheckBox();
             attrComboBox = new ComboBox();
             residComboBox = new ComboBox();
             pbirthComboBox = new ComboBox();
@@ -102,7 +107,13 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(archTextBox);
+            panel1.Controls.Add(idnumTextBox);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(mobilenoTextBox);
+            panel1.Controls.Add(adrsTextBox);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label4);
@@ -113,7 +124,6 @@
             panel1.Controls.Add(statusComboBox);
             panel1.Controls.Add(exstCheckBox);
             panel1.Controls.Add(label12);
-            panel1.Controls.Add(checkBox);
             panel1.Controls.Add(attrComboBox);
             panel1.Controls.Add(residComboBox);
             panel1.Controls.Add(pbirthComboBox);
@@ -131,21 +141,72 @@
             panel1.Controls.Add(label8);
             panel1.Location = new Point(-1, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(398, 618);
+            panel1.Size = new Size(398, 691);
             panel1.TabIndex = 4;
             // 
-            // textBox1
+            // label5
             // 
-            textBox1.Location = new Point(18, 368);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(273, 27);
-            textBox1.TabIndex = 31;
-            textBox1.TextAlign = HorizontalAlignment.Right;
+            label5.AutoSize = true;
+            label5.Location = new Point(299, 488);
+            label5.Name = "label5";
+            label5.Size = new Size(92, 20);
+            label5.TabIndex = 37;
+            label5.Text = "الرقم الداخلي";
+            // 
+            // archTextBox
+            // 
+            archTextBox.Location = new Point(18, 485);
+            archTextBox.Name = "archTextBox";
+            archTextBox.Size = new Size(273, 27);
+            archTextBox.TabIndex = 36;
+            archTextBox.TextAlign = HorizontalAlignment.Right;
+            // 
+            // idnumTextBox
+            // 
+            idnumTextBox.Location = new Point(18, 289);
+            idnumTextBox.Name = "idnumTextBox";
+            idnumTextBox.Size = new Size(238, 27);
+            idnumTextBox.TabIndex = 35;
+            idnumTextBox.TextAlign = HorizontalAlignment.Right;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(307, 295);
+            label3.Name = "label3";
+            label3.Size = new Size(74, 20);
+            label3.TabIndex = 34;
+            label3.Text = "رقم الهوية";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(299, 409);
+            label2.Name = "label2";
+            label2.Size = new Size(91, 20);
+            label2.TabIndex = 33;
+            label2.Text = "الرقم الخليوي";
+            // 
+            // mobilenoTextBox
+            // 
+            mobilenoTextBox.Location = new Point(18, 406);
+            mobilenoTextBox.Name = "mobilenoTextBox";
+            mobilenoTextBox.Size = new Size(273, 27);
+            mobilenoTextBox.TabIndex = 32;
+            mobilenoTextBox.TextAlign = HorizontalAlignment.Right;
+            // 
+            // adrsTextBox
+            // 
+            adrsTextBox.Location = new Point(18, 373);
+            adrsTextBox.Name = "adrsTextBox";
+            adrsTextBox.Size = new Size(273, 27);
+            adrsTextBox.TabIndex = 31;
+            adrsTextBox.TextAlign = HorizontalAlignment.Right;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(297, 368);
+            label1.Location = new Point(297, 373);
             label1.Name = "label1";
             label1.Size = new Size(89, 20);
             label1.TabIndex = 30;
@@ -154,7 +215,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(333, 495);
+            label6.Location = new Point(334, 576);
             label6.Name = "label6";
             label6.Size = new Size(50, 20);
             label6.TabIndex = 29;
@@ -163,7 +224,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(273, 461);
+            label4.Location = new Point(274, 542);
             label4.Name = "label4";
             label4.Size = new Size(110, 20);
             label4.TabIndex = 28;
@@ -178,7 +239,7 @@
             // 
             // nicknameTextBox
             // 
-            nicknameTextBox.Location = new Point(201, 538);
+            nicknameTextBox.Location = new Point(202, 619);
             nicknameTextBox.Name = "nicknameTextBox";
             nicknameTextBox.Size = new Size(183, 27);
             nicknameTextBox.TabIndex = 26;
@@ -189,7 +250,7 @@
             // 
             // occupationTextBox
             // 
-            occupationTextBox.Location = new Point(201, 571);
+            occupationTextBox.Location = new Point(202, 652);
             occupationTextBox.Name = "occupationTextBox";
             occupationTextBox.Size = new Size(183, 27);
             occupationTextBox.TabIndex = 25;
@@ -201,7 +262,7 @@
             // genderComboBox
             // 
             genderComboBox.FormattingEnabled = true;
-            genderComboBox.Location = new Point(116, 494);
+            genderComboBox.Location = new Point(117, 575);
             genderComboBox.Name = "genderComboBox";
             genderComboBox.RightToLeft = RightToLeft.Yes;
             genderComboBox.Size = new Size(151, 28);
@@ -210,7 +271,7 @@
             // statusComboBox
             // 
             statusComboBox.FormattingEnabled = true;
-            statusComboBox.Location = new Point(116, 457);
+            statusComboBox.Location = new Point(117, 538);
             statusComboBox.Name = "statusComboBox";
             statusComboBox.RightToLeft = RightToLeft.Yes;
             statusComboBox.Size = new Size(151, 28);
@@ -219,13 +280,14 @@
             // exstCheckBox
             // 
             exstCheckBox.AutoSize = true;
-            exstCheckBox.Location = new Point(230, 401);
+            exstCheckBox.Location = new Point(236, 455);
             exstCheckBox.Name = "exstCheckBox";
             exstCheckBox.RightToLeft = RightToLeft.Yes;
             exstCheckBox.Size = new Size(154, 24);
             exstCheckBox.TabIndex = 15;
             exstCheckBox.Text = "هل يوجد رقم داخلي";
             exstCheckBox.UseVisualStyleBackColor = true;
+            exstCheckBox.CheckedChanged += exstCheckBox_CheckedChanged;
             // 
             // label12
             // 
@@ -236,22 +298,11 @@
             label12.TabIndex = 24;
             label12.Text = "تاريخ الولادة";
             // 
-            // checkBox
-            // 
-            checkBox.AutoSize = true;
-            checkBox.Location = new Point(226, 331);
-            checkBox.Name = "checkBox";
-            checkBox.RightToLeft = RightToLeft.Yes;
-            checkBox.Size = new Size(160, 24);
-            checkBox.TabIndex = 14;
-            checkBox.Text = "هل يوجد عنوان سكن\n";
-            checkBox.UseVisualStyleBackColor = true;
-            // 
             // attrComboBox
             // 
             attrComboBox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             attrComboBox.FormattingEnabled = true;
-            attrComboBox.Location = new Point(18, 289);
+            attrComboBox.Location = new Point(18, 322);
             attrComboBox.Name = "attrComboBox";
             attrComboBox.RightToLeft = RightToLeft.Yes;
             attrComboBox.Size = new Size(238, 28);
@@ -411,7 +462,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1172, 645);
+            ClientSize = new Size(1212, 703);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Controls.Add(cancelBtn);
@@ -450,7 +501,6 @@
         private ComboBox pbirthComboBox;
         private Label label11;
         private ComboBox nationComboBox;
-        private CheckBox checkBox;
         private CheckBox exstCheckBox;
         private ComboBox statusComboBox;
         private ComboBox genderComboBox;
@@ -460,7 +510,13 @@
         private DateTimePicker dbirthDateTimePicker;
         private Label label6;
         private Label label4;
-        private TextBox textBox1;
+        private TextBox adrsTextBox;
         private Label label1;
+        private Label label2;
+        private TextBox mobilenoTextBox;
+        private Label label3;
+        private TextBox idnumTextBox;
+        private Label label5;
+        private TextBox archTextBox;
     }
 }

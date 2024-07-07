@@ -22,6 +22,7 @@ namespace Forms {
             InitComboBoxes();
             _context = new InvEntities();
             dataGridView1.ReadOnly = true;
+            archTextBox.Enabled = false;
         }
 
         private void InitComboBoxes() {
@@ -193,14 +194,14 @@ namespace Forms {
                     Pbirth = pbirthComboBox.Text,
                     //Dbirth = DateOnly.FromDateTime(dbirthDateTimePicker.Value), int??
                     Resid = residComboBox.Text,
-                    //Adrs = adrsTextBox.Text,
+                    Adrs = adrsTextBox.Text,
                     //Attr = attrComboBox.Text, int??
                     Exst = Convert.ToInt32(exstCheckBox.Checked),
-                    //Arch = archTextBox.Text,
+                    Arch = exstCheckBox.Checked ? null : Convert.ToInt32(archTextBox.Text),
                     Nickname = nicknameTextBox.Text == "[اللقب]" ? "" : nicknameTextBox.Text,
                     Occupation = occupationTextBox.Text == "[المهنة]" ? "" : occupationTextBox.Text,
-                    //Idnum = idnumTextBox.Text,
-                    //Mobileno = mobilenoTextBox.Text,
+                    Idnum = idnumTextBox.Text,
+                    Mobileno = mobilenoTextBox.Text,
                     Status = statusComboBox.Text,
                     Gender = genderComboBox.Text
                 };
@@ -267,18 +268,18 @@ namespace Forms {
                         person.Father = fatherTextBox.Text == "[اسم الأب]" ? "" : fatherTextBox.Text;
                         person.Mother = motherTextBox.Text == "[اسم الأم]" ? "" : motherTextBox.Text;
                         //person.Nation = nationComboBox.Text; int??
-                        person.Reg = regTextBox.Text;
+                        person.Reg = regTextBox.Text == "[رقم و مكان السجل]" ? "" : regTextBox.Text;
                         person.Pbirth = pbirthComboBox.Text;
                         //person.Dbirth = DateOnly.FromDateTime(dbirthDateTimePicker.Value); int??
                         person.Resid = residComboBox.Text;
-                        //person.Adrs = adrsTextBox.Text;
+                        person.Adrs = adrsTextBox.Text;
                         //person.Attr = attrComboBox.Text; int??
                         person.Exst = Convert.ToInt32(exstCheckBox.Checked);
-                        //person.Arch = archTextBox.Text;
+                        person.Arch = exstCheckBox.Checked ? null : Convert.ToInt32(archTextBox.Text);
                         person.Nickname = nicknameTextBox.Text == "[اللقب]" ? "" : nicknameTextBox.Text;
                         person.Occupation = occupationTextBox.Text == "[المهنة]" ? "" : occupationTextBox.Text;
-                        //person.Idnum = idnumTextBox.Text;
-                        //person.Mobileno = mobilenoTextBox.Text;
+                        person.Idnum = idnumTextBox.Text;
+                        person.Mobileno = mobilenoTextBox.Text;
                         person.Status = statusComboBox.Text;
                         person.Gender = genderComboBox.Text;
 
@@ -313,6 +314,11 @@ namespace Forms {
                 return false;
             }
 
+            if (exstCheckBox.Checked && !int.TryParse(archTextBox.Text, out _)) {
+                MessageBox.Show("الرجاء إدخال رقم داخلي صحيح");
+                return false;
+            }
+
             if (fnameTextBox.Text == "[الاسم]" && nicknameTextBox.Text == "[اللقب]") {
                 MessageBox.Show("الرجاء إدخال الإسم أو اللقب");
                 return false;
@@ -334,15 +340,14 @@ namespace Forms {
             pbirthComboBox.SelectedIndex = -1;
             dbirthDateTimePicker.Value = DateTime.Now;
             residComboBox.SelectedIndex = -1;
-            //adrsTextBox.Text = "";
+            adrsTextBox.Text = "";
             attrComboBox.SelectedIndex = -1;
             exstCheckBox.Checked = false;
-            checkBox.Checked = false;
-            //archTextBox.Text = "";
+            archTextBox.Text = "";
             nicknameTextBox.Text = "[اللقب]";
             occupationTextBox.Text = "[المهنة]";
-            //idnumTextBox.Text = "";
-            //mobilenoTextBox.Text = "";
+            idnumTextBox.Text = "";
+            mobilenoTextBox.Text = "";
             statusComboBox.SelectedIndex = -1;
             genderComboBox.SelectedIndex = -1;
 
@@ -383,7 +388,7 @@ namespace Forms {
                 //adrsTextBox.Text = selectedRow.Cells["ADRS"].Value.ToString();
                 //attrComboBox.Text = selectedRow.Cells["ATTR"].Value.ToString(); error
                 exstCheckBox.Checked = Convert.ToBoolean(selectedRow.Cells["EXST"].Value);
-                checkBox.Checked = Convert.ToBoolean(selectedRow.Cells["ARCH"].Value);
+              
                 //archTextBox.Text = selectedRow.Cells["ARCH"].Value.ToString();
                 nicknameTextBox.Text = selectedRow.Cells["nickname"].Value.ToString();
                 if (nicknameTextBox.Text == "") {
@@ -394,7 +399,7 @@ namespace Forms {
                     occupationTextBox.Text = "[المهنة]";
                 }
                 //idnumTextBox.Text = selectedRow.Cells["idnum"].Value.ToString();
-                //mobilenoTextBox.Text = selectedRow.Cells["mobileno"].Value.ToString();
+                mobilenoTextBox.Text = selectedRow.Cells["mobileno"].Value.ToString();
                 statusComboBox.Text = selectedRow.Cells["status"].Value.ToString();
                 genderComboBox.Text = selectedRow.Cells["Gender"].Value.ToString();
 
@@ -553,7 +558,7 @@ namespace Forms {
         }
 
         private void attrComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (attrComboBox.SelectedIndex == prevIndexAttr || attrComboBox.SelectedIndex == -1 ||  prevIndexAttr == -1) {
+            if (attrComboBox.SelectedIndex == prevIndexAttr || attrComboBox.SelectedIndex == -1 || prevIndexAttr == -1) {
                 prevIndexAttr = attrComboBox.SelectedIndex;
                 return;
             }
@@ -571,6 +576,15 @@ namespace Forms {
                 prevIndexAttr = attrComboBox.SelectedIndex;
             }
 
+        }
+
+        private void exstCheckBox_CheckedChanged(object sender, EventArgs e) {
+            if(exstCheckBox.Checked) {
+                archTextBox.Enabled = true;
+            }
+            else {
+                archTextBox.Enabled = false;
+            }
         }
     }
 }
