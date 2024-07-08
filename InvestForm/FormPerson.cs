@@ -20,7 +20,10 @@ namespace Forms {
         private readonly string ROOT_DIR = Directory.GetCurrentDirectory();
         private InvEntities _context;
         private int prevIndexNation, prevIndexPbirth, prevIndexResid, prevIndexAttr;
-        public FormPerson() {
+        private int _serial = -1;
+        public FormPerson(int serial = -1) {
+            _serial = serial;
+
             InitializeComponent();
             InitComboBoxes();
             _context = new InvEntities();
@@ -28,6 +31,7 @@ namespace Forms {
             archTextBox.Enabled = false;
         }
 
+        
         private void InitComboBoxes() {
             populatenationComboBox();
             populateresidComboBox();
@@ -130,8 +134,13 @@ namespace Forms {
         }
 
         private async Task LoadPersonsAsync() {
-            var persons = await _context.Invpersons.ToListAsync();
-            dataGridView1.DataSource = persons;
+            if (_serial == -1) {
+                var persons = await _context.Invpersons.ToListAsync();
+                dataGridView1.DataSource = persons;
+            } else {
+                var persons = await _context.Invpersons.Where(p => p.Serial == _serial).ToListAsync();
+                dataGridView1.DataSource = persons;
+            }
 
             dataGridView1.Columns["SERIAL"].HeaderText = "[الرقم المتسلسل للملف]";
             dataGridView1.Columns["SERPERS"].HeaderText = "[الرقم المتسلسل للشخص]";

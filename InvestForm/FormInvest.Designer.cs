@@ -26,8 +26,7 @@
             insertbtn = new Button();
             editbtn = new Button();
             vehl = new Button();
-            button4 = new Button();
-            button5 = new Button();
+            word = new Button();
             InvPers = new Button();
             cancelbtn = new Button();
             newbtn = new Button();
@@ -45,7 +44,6 @@
             label2 = new Label();
             crimeTypeComboBox = new ComboBox();
             remarksTextBox = new RichTextBox();
-            label3 = new Label();
             label4 = new Label();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
@@ -86,23 +84,15 @@
             vehl.Text = "سيارات";
             vehl.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // word
             // 
-            button4.Location = new Point(224, 487);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 29);
-            button4.TabIndex = 3;
-            button4.Text = "ملخص";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(424, 487);
-            button5.Name = "button5";
-            button5.Size = new Size(94, 29);
-            button5.TabIndex = 4;
-            button5.Text = "تصنيف";
-            button5.UseVisualStyleBackColor = true;
+            word.Location = new Point(424, 487);
+            word.Name = "word";
+            word.Size = new Size(94, 29);
+            word.TabIndex = 4;
+            word.Text = "تصنيف";
+            word.UseVisualStyleBackColor = true;
+
             // 
             // InvPers
             // 
@@ -112,6 +102,7 @@
             InvPers.TabIndex = 5;
             InvPers.Text = "أشخاص";
             InvPers.UseVisualStyleBackColor = true;
+            InvPers.Click += InvPers_Click;
             // 
             // cancelbtn
             // 
@@ -246,8 +237,11 @@
             crimeTypeComboBox.FormattingEnabled = true;
             crimeTypeComboBox.Location = new Point(3, 157);
             crimeTypeComboBox.Name = "crimeTypeComboBox";
+            crimeTypeComboBox.RightToLeft = RightToLeft.Yes;
             crimeTypeComboBox.Size = new Size(247, 28);
             crimeTypeComboBox.TabIndex = 14;
+            crimeTypeComboBox.Text = "[الجرم]";
+            crimeTypeComboBox.Leave += crimeTypeComboBox_Leave;
             // 
             // remarksTextBox
             // 
@@ -256,15 +250,6 @@
             remarksTextBox.Size = new Size(247, 252);
             remarksTextBox.TabIndex = 16;
             remarksTextBox.Text = "";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(177, 160);
-            label3.Name = "label3";
-            label3.Size = new Size(51, 20);
-            label3.TabIndex = 17;
-            label3.Text = "[الجرم]";
             // 
             // label4
             // 
@@ -280,9 +265,11 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(490, 49);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.RightToLeft = RightToLeft.Yes;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(628, 417);
             dataGridView1.TabIndex = 19;
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             // 
             // panel2
             // 
@@ -292,7 +279,6 @@
             panel2.Controls.Add(insertDatePicker);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(transactionDatePicker);
-            panel2.Controls.Add(label3);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(crimeTypeComboBox);
@@ -331,8 +317,7 @@
             Controls.Add(newbtn);
             Controls.Add(cancelbtn);
             Controls.Add(InvPers);
-            Controls.Add(button5);
-            Controls.Add(button4);
+            Controls.Add(word);
             Controls.Add(vehl);
             Controls.Add(editbtn);
             Controls.Add(insertbtn);
@@ -353,7 +338,7 @@
         private Button editbtn;
         private Button vehl;
         private Button button4;
-        private Button button5;
+        private Button word;
         private Button InvPers;
         private Button cancelbtn;
         private Button newbtn;
@@ -371,7 +356,6 @@
         private Label label2;
         private ComboBox crimeTypeComboBox;
         private RichTextBox remarksTextBox;
-        private Label label3;
         private Label label4;
         private DataGridView dataGridView1;
         private Panel panel2;
