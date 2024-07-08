@@ -10,11 +10,13 @@ using System.Windows.Forms;
 using InvestForm.Repositories;
 using InvestForm.Repositories.Models;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Forms {
     public partial class FormPerson : Form {
 
+        private readonly string ROOT_DIR = Directory.GetCurrentDirectory();
         private InvEntities _context;
         private int prevIndexNation, prevIndexPbirth, prevIndexResid, prevIndexAttr;
         public FormPerson() {
@@ -47,63 +49,37 @@ namespace Forms {
         }
 
         private void populatenationComboBox() {
-            var nations = new List<string> {
-                "لبنان"
-            };
+            string filePath = "../../../TABLES/nations.xlsx";
+            string column = "C";
+            var nations = ReadColumnFromExcel(filePath, column);
+
 
             nationComboBox.DataSource = nations;
             nationComboBox.SelectedIndex = -1;
         }
 
         private void populateattrComboBox() {
-            var attr = new List<string> {
-              "مدعي", "موقوف", "مشتبه به", "محتجز", "مستجوب", "متهم", "محكوم عليه", "مفقود", "مشار إليه", "متورط", "مشتبه فيه", "مراقب", "متابع", "مطلوب للتحقيق", "محظور السفر", "متورط في قضية", "مرتبط بجريمة", "معتقل", "محكوم عليه بالإعدام", "مُختَفي" };
-
+            string filePath = "../../../TABLES/attr.xlsx";
+            string column = "C";
+            var attr = ReadColumnFromExcel(filePath, column);
+           
             attrComboBox.DataSource = attr;
             attrComboBox.SelectedIndex = -1;
         }
 
         private void populateresidComboBox() {
-            var resids = new List<string> {
-                "بيروت",
-                "طرابلس",
-                "صيدا",
-                "صور",
-                "جبيل",
-                "بعلبك",
-                "زحلة",
-                "البترون",
-                "الشوف",
-                "النبطية",
-                "عاليه",
-                "بشري",
-                "الكورة",
-                "جزين",
-                "بنت جبيل"
-            };
+            string filePath = "../../../TABLES/VILLAGE.xlsx";
+            string column = "C";
+            var resids = ReadColumnFromExcel(filePath, column);
 
             residComboBox.DataSource = resids;
             residComboBox.SelectedIndex = -1;
         }
 
         private void populatepbirthComboBox() {
-            var pbirths = new List<string> {
-                "بيروت",
-                "طرابلس",
-                "صيدا",
-                "صور",
-                "جبيل",
-                "بعلبك",
-                "زحلة",
-                "البترون",
-                "الشوف",
-                "النبطية",
-                "عاليه",
-                "بشري",
-                "الكورة",
-                "جزين",
-                "بنت جبيل"
-            };
+            string filePath = "../../../TABLES/VILLAGE.xlsx";
+            string column = "C";
+            var pbirths = ReadColumnFromExcel(filePath, column);
 
             pbirthComboBox.DataSource = pbirths;
             pbirthComboBox.SelectedIndex = -1;
@@ -131,6 +107,22 @@ namespace Forms {
             genderComboBox.SelectedIndex = -1;
         }
 
+        static List<string> ReadColumnFromExcel(string filePath, string columnName) {
+            var data = new List<string>();
+
+            FileInfo fileInfo = new FileInfo(filePath);
+            using (ExcelPackage package = new ExcelPackage(fileInfo)) {
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; 
+                int totalRows = worksheet.Dimension.Rows;
+
+                for (int row = 2; row <= totalRows; row++) {
+                    var cellValue = worksheet.Cells[$"{columnName}{row}"].Text;
+                    data.Add(cellValue);
+                }
+            }
+
+            return data;
+        }
 
         private async void FormPerson_Load(object sender, EventArgs e) {
             await LoadPersonsAsync();
@@ -140,10 +132,6 @@ namespace Forms {
             var persons = await _context.Invpersons.ToListAsync();
             dataGridView1.DataSource = persons;
 
-            //   fix columns height
-
-            dataGridView1.Columns["SERIAL"].Width = 50;
-            dataGridView1.Columns["SERPERS"].Width = 50;
             dataGridView1.Columns["SERIAL"].HeaderText = "[الرقم المتسلسل للملف]";
             dataGridView1.Columns["SERPERS"].HeaderText = "[الرقم المتسلسل للشخص]";
             dataGridView1.Columns["FNAME"].HeaderText = "[الإسم]";
@@ -197,7 +185,7 @@ namespace Forms {
                     Adrs = adrsTextBox.Text,
                     //Attr = attrComboBox.Text, int??
                     Exst = Convert.ToInt32(exstCheckBox.Checked),
-                    Arch = exstCheckBox.Checked ?  Convert.ToInt32(archTextBox.Text): null,
+                    Arch = exstCheckBox.Checked ? Convert.ToInt32(archTextBox.Text) : null,
                     Nickname = nicknameTextBox.Text == "[اللقب]" ? "" : nicknameTextBox.Text,
                     Occupation = occupationTextBox.Text == "[المهنة]" ? "" : occupationTextBox.Text,
                     Idnum = idnumTextBox.Text,
@@ -388,7 +376,7 @@ namespace Forms {
                 //adrsTextBox.Text = selectedRow.Cells["ADRS"].Value.ToString();
                 //attrComboBox.Text = selectedRow.Cells["ATTR"].Value.ToString(); error
                 exstCheckBox.Checked = Convert.ToBoolean(selectedRow.Cells["EXST"].Value);
-              
+
                 //archTextBox.Text = selectedRow.Cells["ARCH"].Value.ToString();
                 nicknameTextBox.Text = selectedRow.Cells["nickname"].Value.ToString();
                 if (nicknameTextBox.Text == "") {
@@ -579,7 +567,7 @@ namespace Forms {
         }
 
         private void exstCheckBox_CheckedChanged(object sender, EventArgs e) {
-            if(exstCheckBox.Checked) {
+            if (exstCheckBox.Checked) {
                 archTextBox.Enabled = true;
             }
             else {
