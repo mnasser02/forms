@@ -11,6 +11,7 @@ using InvestForm.Repositories;
 using InvestForm.Repositories.Models;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Forms {
@@ -55,7 +56,7 @@ namespace Forms {
 
 
             nationComboBox.DataSource = nations;
-            nationComboBox.SelectedIndex = -1;
+            nationComboBox.SelectedIndex = 0;
         }
 
         private void populateattrComboBox() {
@@ -64,7 +65,7 @@ namespace Forms {
             var attr = ReadColumnFromExcel(filePath, column);
            
             attrComboBox.DataSource = attr;
-            attrComboBox.SelectedIndex = -1;
+            attrComboBox.SelectedIndex = 0;
         }
 
         private void populateresidComboBox() {
@@ -177,13 +178,13 @@ namespace Forms {
                     Lname = lnameTextBox.Text == "[الشهرة]" ? "" : lnameTextBox.Text,
                     Father = fatherTextBox.Text == "[اسم الأب]" ? "" : fatherTextBox.Text,
                     Mother = motherTextBox.Text == "[اسم الأم]" ? "" : motherTextBox.Text,
-                    //Nation = nationComboBox.Text, int??
+                    Nation = nationComboBox.SelectedIndex,
                     Reg = regTextBox.Text == "[رقم و مكان السجل]" ? "" : regTextBox.Text,
                     Pbirth = pbirthComboBox.Text,
-                    //Dbirth = DateOnly.FromDateTime(dbirthDateTimePicker.Value), int??
+                    Dbirth = Convert.ToInt32(dbirthDateTimePicker.Value.ToString("yyyyMMdd")),
                     Resid = residComboBox.Text,
                     Adrs = adrsTextBox.Text,
-                    //Attr = attrComboBox.Text, int??
+                    Attr = attrComboBox.SelectedIndex,
                     Exst = Convert.ToInt32(exstCheckBox.Checked),
                     Arch = exstCheckBox.Checked ? Convert.ToInt32(archTextBox.Text) : null,
                     Nickname = nicknameTextBox.Text == "[اللقب]" ? "" : nicknameTextBox.Text,
@@ -255,13 +256,13 @@ namespace Forms {
                         person.Lname = lnameTextBox.Text == "[الشهرة]" ? "" : lnameTextBox.Text;
                         person.Father = fatherTextBox.Text == "[اسم الأب]" ? "" : fatherTextBox.Text;
                         person.Mother = motherTextBox.Text == "[اسم الأم]" ? "" : motherTextBox.Text;
-                        //person.Nation = nationComboBox.Text; int??
+                        person.Nation = nationComboBox.SelectedIndex;
                         person.Reg = regTextBox.Text == "[رقم و مكان السجل]" ? "" : regTextBox.Text;
                         person.Pbirth = pbirthComboBox.Text;
-                        //person.Dbirth = DateOnly.FromDateTime(dbirthDateTimePicker.Value); int??
+                        person.Dbirth = Convert.ToInt32(dbirthDateTimePicker.Value.ToString("yyyyMMdd"));
                         person.Resid = residComboBox.Text;
                         person.Adrs = adrsTextBox.Text;
-                        //person.Attr = attrComboBox.Text; int??
+                        person.Attr = attrComboBox.SelectedIndex;
                         person.Exst = Convert.ToInt32(exstCheckBox.Checked);
                         person.Arch = exstCheckBox.Checked ? Convert.ToInt32(archTextBox.Text) : null;
                         person.Nickname = nicknameTextBox.Text == "[اللقب]" ? "" : nicknameTextBox.Text;
@@ -322,14 +323,14 @@ namespace Forms {
             lnameTextBox.Text = "[الشهرة]";
             fatherTextBox.Text = "[اسم الأب]";
             motherTextBox.Text = "[اسم الأم]";
-            nationComboBox.SelectedIndex = -1;
+            nationComboBox.SelectedIndex = 0;
 
             regTextBox.Text = "[رقم و مكان السجل]";
             pbirthComboBox.SelectedIndex = -1;
             dbirthDateTimePicker.Value = DateTime.Now;
             residComboBox.SelectedIndex = -1;
             adrsTextBox.Text = "";
-            attrComboBox.SelectedIndex = -1;
+            attrComboBox.SelectedIndex = 0;
             exstCheckBox.Checked = false;
             archTextBox.Text = "";
             nicknameTextBox.Text = "[اللقب]";
@@ -365,19 +366,31 @@ namespace Forms {
                 if (motherTextBox.Text == "") {
                     motherTextBox.Text = "[اسم الأم]";
                 }
-                //nationComboBox.Text = selectedRow.Cells["NATION"].Value.ToString(); error
+
+                prevIndexNation = Convert.ToInt32(selectedRow.Cells["NATION"].Value);
+                nationComboBox.SelectedIndex = Convert.ToInt32(selectedRow.Cells["NATION"].Value);
+
                 regTextBox.Text = selectedRow.Cells["REG"].Value.ToString();
                 if (regTextBox.Text == "") {
                     regTextBox.Text = "[رقم و مكان السجل]";
                 }
                 pbirthComboBox.Text = selectedRow.Cells["PBIRTH"].Value.ToString();
-                //dbirthDateTimePicker.Value = Convert.ToDateTime(selectedRow.Cells["DBIRTH"].Value); error
-                residComboBox.Text = selectedRow.Cells["RESID"].Value.ToString();
-                //adrsTextBox.Text = selectedRow.Cells["ADRS"].Value.ToString();
-                //attrComboBox.Text = selectedRow.Cells["ATTR"].Value.ToString(); error
-                exstCheckBox.Checked = Convert.ToBoolean(selectedRow.Cells["EXST"].Value);
 
-                //archTextBox.Text = selectedRow.Cells["ARCH"].Value.ToString();
+                DateTime date;
+                DateTime.TryParseExact(selectedRow.Cells["DBIRTH"].Value.ToString(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
+                dbirthDateTimePicker.Value = date;
+
+                residComboBox.Text = selectedRow.Cells["RESID"].Value.ToString();
+                adrsTextBox.Text = selectedRow.Cells["ADRS"].Value.ToString();
+
+                prevIndexAttr = Convert.ToInt32(selectedRow.Cells["ATTR"].Value);
+                attrComboBox.SelectedIndex = Convert.ToInt32(selectedRow.Cells["ATTR"].Value);
+
+                exstCheckBox.Checked = Convert.ToBoolean(selectedRow.Cells["EXST"].Value);
+                if (exstCheckBox.Checked) {
+                    archTextBox.Text = selectedRow.Cells["ARCH"].Value.ToString();
+                }
+
                 nicknameTextBox.Text = selectedRow.Cells["nickname"].Value.ToString();
                 if (nicknameTextBox.Text == "") {
                     nicknameTextBox.Text = "[اللقب]";
@@ -386,7 +399,7 @@ namespace Forms {
                 if (occupationTextBox.Text == "") {
                     occupationTextBox.Text = "[المهنة]";
                 }
-                //idnumTextBox.Text = selectedRow.Cells["idnum"].Value.ToString();
+                idnumTextBox.Text = selectedRow.Cells["idnum"].Value.ToString();
                 mobilenoTextBox.Text = selectedRow.Cells["mobileno"].Value.ToString();
                 statusComboBox.Text = selectedRow.Cells["status"].Value.ToString();
                 genderComboBox.Text = selectedRow.Cells["Gender"].Value.ToString();
@@ -481,7 +494,7 @@ namespace Forms {
         }
 
         private void nationComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (nationComboBox.SelectedIndex == prevIndexNation || nationComboBox.SelectedIndex == -1 || prevIndexNation == -1) {
+            if (nationComboBox.SelectedIndex == prevIndexNation || nationComboBox.SelectedIndex == 0) {
                 prevIndexNation = nationComboBox.SelectedIndex;
                 return;
             }
@@ -546,13 +559,12 @@ namespace Forms {
         }
 
         private void attrComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (attrComboBox.SelectedIndex == prevIndexAttr || attrComboBox.SelectedIndex == -1 || prevIndexAttr == -1) {
+            if (attrComboBox.SelectedIndex == prevIndexAttr || attrComboBox.SelectedIndex == 0) {
                 prevIndexAttr = attrComboBox.SelectedIndex;
                 return;
             }
             string selectedAttr = attrComboBox.Text;
 
-            // Display confirmation dialog to the user
             DialogResult result = MessageBox.Show($"هل أنت متأكد من رغبتك في تغيير الصفة إلى '{selectedAttr}'؟",
                                                   "تأكيد تغيير الصفة",
                                                   MessageBoxButtons.YesNo,
