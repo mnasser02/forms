@@ -67,46 +67,59 @@
             // 
             // insertBtn
             // 
-            insertBtn.Location = new Point(1066, 604);
+            insertBtn.BackColor = SystemColors.GradientActiveCaption;
+            insertBtn.Font = new Font("Times New Roman", 13.8F);
+            insertBtn.ForeColor = SystemColors.Desktop;
+            insertBtn.Location = new Point(1142, 680);
             insertBtn.Name = "insertBtn";
-            insertBtn.Size = new Size(94, 29);
+            insertBtn.Size = new Size(103, 35);
             insertBtn.TabIndex = 0;
             insertBtn.Text = "إدخال";
-            insertBtn.UseVisualStyleBackColor = true;
+            insertBtn.UseVisualStyleBackColor = false;
             insertBtn.Click += insertBtn_Click;
             // 
             // updateBtn
             // 
-            updateBtn.Location = new Point(866, 604);
+            updateBtn.BackColor = SystemColors.GradientActiveCaption;
+            updateBtn.Font = new Font("Times New Roman", 13.8F);
+            updateBtn.ForeColor = SystemColors.Desktop;
+            updateBtn.Location = new Point(918, 680);
             updateBtn.Name = "updateBtn";
-            updateBtn.Size = new Size(94, 29);
+            updateBtn.Size = new Size(105, 35);
             updateBtn.TabIndex = 1;
             updateBtn.Text = "تعديل";
-            updateBtn.UseVisualStyleBackColor = true;
+            updateBtn.UseVisualStyleBackColor = false;
             updateBtn.Click += updateBtn_Click;
             // 
             // deleteBtn
             // 
-            deleteBtn.Location = new Point(966, 604);
+            deleteBtn.BackColor = SystemColors.GradientActiveCaption;
+            deleteBtn.Font = new Font("Times New Roman", 13.8F);
+            deleteBtn.ForeColor = SystemColors.Desktop;
+            deleteBtn.Location = new Point(1029, 680);
             deleteBtn.Name = "deleteBtn";
-            deleteBtn.Size = new Size(94, 29);
+            deleteBtn.Size = new Size(107, 35);
             deleteBtn.TabIndex = 2;
             deleteBtn.Text = "حذف";
-            deleteBtn.UseVisualStyleBackColor = true;
+            deleteBtn.UseVisualStyleBackColor = false;
             deleteBtn.Click += deleteBtn_Click;
             // 
             // cancelBtn
             // 
-            cancelBtn.Location = new Point(766, 604);
+            cancelBtn.BackColor = SystemColors.GradientActiveCaption;
+            cancelBtn.Font = new Font("Times New Roman", 13.8F);
+            cancelBtn.ForeColor = SystemColors.Desktop;
+            cancelBtn.Location = new Point(807, 680);
             cancelBtn.Name = "cancelBtn";
-            cancelBtn.Size = new Size(94, 29);
+            cancelBtn.Size = new Size(105, 35);
             cancelBtn.TabIndex = 3;
             cancelBtn.Text = "إلغاء";
-            cancelBtn.UseVisualStyleBackColor = true;
+            cancelBtn.UseVisualStyleBackColor = false;
             cancelBtn.Click += cancelBtn_Click;
             // 
             // panel1
             // 
+            panel1.BackColor = SystemColors.GradientInactiveCaption;
             panel1.Controls.Add(label5);
             panel1.Controls.Add(archTextBox);
             panel1.Controls.Add(idnumTextBox);
@@ -147,9 +160,12 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.Font = new Font("Times New Roman", 10.8F);
+            label5.ForeColor = SystemColors.MenuText;
             label5.Location = new Point(299, 488);
             label5.Name = "label5";
-            label5.Size = new Size(92, 20);
+            label5.RightToLeft = RightToLeft.Yes;
+            label5.Size = new Size(85, 20);
             label5.TabIndex = 37;
             label5.Text = "الرقم الداخلي";
             // 
@@ -172,18 +188,24 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(307, 295);
+            label3.Font = new Font("Times New Roman", 10.8F);
+            label3.ForeColor = SystemColors.MenuText;
+            label3.Location = new Point(312, 292);
             label3.Name = "label3";
-            label3.Size = new Size(74, 20);
+            label3.RightToLeft = RightToLeft.Yes;
+            label3.Size = new Size(68, 20);
             label3.TabIndex = 34;
             label3.Text = "رقم الهوية";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Times New Roman", 10.8F);
+            label2.ForeColor = SystemColors.MenuText;
             label2.Location = new Point(299, 409);
             label2.Name = "label2";
-            label2.Size = new Size(91, 20);
+            label2.RightToLeft = RightToLeft.Yes;
+            label2.Size = new Size(87, 20);
             label2.TabIndex = 33;
             label2.Text = "الرقم الخليوي";
             // 
@@ -206,27 +228,36 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Times New Roman", 10.8F);
+            label1.ForeColor = SystemColors.MenuText;
             label1.Location = new Point(297, 373);
             label1.Name = "label1";
-            label1.Size = new Size(89, 20);
+            label1.RightToLeft = RightToLeft.Yes;
+            label1.Size = new Size(82, 20);
             label1.TabIndex = 30;
             label1.Text = "عنوان السكن";
             // 
             // label6
             // 
             label6.AutoSize = true;
+            label6.Font = new Font("Times New Roman", 10.8F);
+            label6.ForeColor = SystemColors.MenuText;
             label6.Location = new Point(334, 576);
             label6.Name = "label6";
-            label6.Size = new Size(50, 20);
+            label6.RightToLeft = RightToLeft.Yes;
+            label6.Size = new Size(46, 20);
             label6.TabIndex = 29;
             label6.Text = "الجنس";
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.Font = new Font("Times New Roman", 10.8F);
+            label4.ForeColor = SystemColors.MenuText;
             label4.Location = new Point(274, 542);
             label4.Name = "label4";
-            label4.Size = new Size(110, 20);
+            label4.RightToLeft = RightToLeft.Yes;
+            label4.Size = new Size(106, 20);
             label4.TabIndex = 28;
             label4.Text = "الحالة الاجتماعية";
             // 
@@ -239,9 +270,11 @@
             // 
             // nicknameTextBox
             // 
+            nicknameTextBox.Font = new Font("Times New Roman", 10.8F);
+            nicknameTextBox.ForeColor = SystemColors.WindowFrame;
             nicknameTextBox.Location = new Point(202, 619);
             nicknameTextBox.Name = "nicknameTextBox";
-            nicknameTextBox.Size = new Size(183, 27);
+            nicknameTextBox.Size = new Size(183, 28);
             nicknameTextBox.TabIndex = 26;
             nicknameTextBox.Text = "[اللقب]";
             nicknameTextBox.TextAlign = HorizontalAlignment.Right;
@@ -250,9 +283,11 @@
             // 
             // occupationTextBox
             // 
+            occupationTextBox.Font = new Font("Times New Roman", 10.8F);
+            occupationTextBox.ForeColor = SystemColors.WindowFrame;
             occupationTextBox.Location = new Point(202, 652);
             occupationTextBox.Name = "occupationTextBox";
-            occupationTextBox.Size = new Size(183, 27);
+            occupationTextBox.Size = new Size(183, 28);
             occupationTextBox.TabIndex = 25;
             occupationTextBox.Text = "[المهنة]";
             occupationTextBox.TextAlign = HorizontalAlignment.Right;
@@ -261,6 +296,7 @@
             // 
             // genderComboBox
             // 
+            genderComboBox.BackColor = SystemColors.InactiveBorder;
             genderComboBox.FormattingEnabled = true;
             genderComboBox.Location = new Point(117, 575);
             genderComboBox.Name = "genderComboBox";
@@ -270,6 +306,7 @@
             // 
             // statusComboBox
             // 
+            statusComboBox.BackColor = SystemColors.InactiveBorder;
             statusComboBox.FormattingEnabled = true;
             statusComboBox.Location = new Point(117, 538);
             statusComboBox.Name = "statusComboBox";
@@ -280,10 +317,12 @@
             // exstCheckBox
             // 
             exstCheckBox.AutoSize = true;
+            exstCheckBox.Font = new Font("Times New Roman", 10.8F);
+            exstCheckBox.ForeColor = SystemColors.MenuText;
             exstCheckBox.Location = new Point(236, 455);
             exstCheckBox.Name = "exstCheckBox";
             exstCheckBox.RightToLeft = RightToLeft.Yes;
-            exstCheckBox.Size = new Size(154, 24);
+            exstCheckBox.Size = new Size(146, 24);
             exstCheckBox.TabIndex = 15;
             exstCheckBox.Text = "هل يوجد رقم داخلي";
             exstCheckBox.UseVisualStyleBackColor = true;
@@ -292,15 +331,19 @@
             // label12
             // 
             label12.AutoSize = true;
+            label12.Font = new Font("Times New Roman", 10.8F);
+            label12.ForeColor = SystemColors.MenuText;
             label12.Location = new Point(299, 263);
             label12.Name = "label12";
-            label12.Size = new Size(85, 20);
+            label12.RightToLeft = RightToLeft.Yes;
+            label12.Size = new Size(81, 20);
             label12.TabIndex = 24;
             label12.Text = "تاريخ الولادة";
             // 
             // attrComboBox
             // 
-            attrComboBox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            attrComboBox.BackColor = SystemColors.InactiveBorder;
+            attrComboBox.Font = new Font("Times New Roman", 10.8F);
             attrComboBox.FormattingEnabled = true;
             attrComboBox.Location = new Point(18, 322);
             attrComboBox.Name = "attrComboBox";
@@ -312,6 +355,7 @@
             // 
             // residComboBox
             // 
+            residComboBox.BackColor = SystemColors.InactiveBorder;
             residComboBox.FormattingEnabled = true;
             residComboBox.Location = new Point(18, 222);
             residComboBox.Name = "residComboBox";
@@ -322,6 +366,7 @@
             // 
             // pbirthComboBox
             // 
+            pbirthComboBox.BackColor = SystemColors.InactiveBorder;
             pbirthComboBox.FormattingEnabled = true;
             pbirthComboBox.Location = new Point(18, 188);
             pbirthComboBox.Name = "pbirthComboBox";
@@ -333,24 +378,31 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(301, 230);
+            label11.Font = new Font("Times New Roman", 10.8F);
+            label11.ForeColor = SystemColors.MenuText;
+            label11.Location = new Point(307, 230);
             label11.Name = "label11";
-            label11.Size = new Size(83, 20);
+            label11.RightToLeft = RightToLeft.Yes;
+            label11.Size = new Size(77, 20);
             label11.TabIndex = 20;
             label11.Text = "محل الإقامة";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(301, 196);
+            label10.Font = new Font("Times New Roman", 10.8F);
+            label10.ForeColor = SystemColors.MenuText;
+            label10.Location = new Point(305, 196);
             label10.Name = "label10";
-            label10.Size = new Size(83, 20);
+            label10.RightToLeft = RightToLeft.Yes;
+            label10.Size = new Size(77, 20);
             label10.TabIndex = 14;
             label10.Text = "محل الولادة";
             // 
             // nationComboBox
             // 
-            nationComboBox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            nationComboBox.BackColor = SystemColors.InactiveBorder;
+            nationComboBox.Font = new Font("Times New Roman", 10.8F);
             nationComboBox.FormattingEnabled = true;
             nationComboBox.Location = new Point(18, 154);
             nationComboBox.Name = "nationComboBox";
@@ -362,9 +414,11 @@
             // 
             // regTextBox
             // 
+            regTextBox.Font = new Font("Times New Roman", 10.8F);
+            regTextBox.ForeColor = SystemColors.WindowFrame;
             regTextBox.Location = new Point(18, 121);
             regTextBox.Name = "regTextBox";
-            regTextBox.Size = new Size(376, 27);
+            regTextBox.Size = new Size(376, 28);
             regTextBox.TabIndex = 19;
             regTextBox.Text = "[رقم و مكان السجل]";
             regTextBox.TextAlign = HorizontalAlignment.Right;
@@ -373,9 +427,11 @@
             // 
             // motherTextBox
             // 
+            motherTextBox.Font = new Font("Times New Roman", 10.8F);
+            motherTextBox.ForeColor = SystemColors.WindowFrame;
             motherTextBox.Location = new Point(18, 88);
             motherTextBox.Name = "motherTextBox";
-            motherTextBox.Size = new Size(183, 27);
+            motherTextBox.Size = new Size(183, 28);
             motherTextBox.TabIndex = 18;
             motherTextBox.Text = "[اسم الأم]";
             motherTextBox.TextAlign = HorizontalAlignment.Right;
@@ -384,9 +440,11 @@
             // 
             // fatherTextBox
             // 
+            fatherTextBox.Font = new Font("Times New Roman", 10.8F);
+            fatherTextBox.ForeColor = SystemColors.WindowFrame;
             fatherTextBox.Location = new Point(210, 88);
             fatherTextBox.Name = "fatherTextBox";
-            fatherTextBox.Size = new Size(184, 27);
+            fatherTextBox.Size = new Size(184, 28);
             fatherTextBox.TabIndex = 17;
             fatherTextBox.Text = "[اسم الأب]";
             fatherTextBox.TextAlign = HorizontalAlignment.Right;
@@ -395,9 +453,11 @@
             // 
             // lnameTextBox
             // 
+            lnameTextBox.Font = new Font("Times New Roman", 10.8F);
+            lnameTextBox.ForeColor = SystemColors.WindowFrame;
             lnameTextBox.Location = new Point(18, 55);
             lnameTextBox.Name = "lnameTextBox";
-            lnameTextBox.Size = new Size(183, 27);
+            lnameTextBox.Size = new Size(183, 28);
             lnameTextBox.TabIndex = 16;
             lnameTextBox.Text = "[الشهرة]";
             lnameTextBox.TextAlign = HorizontalAlignment.Right;
@@ -406,9 +466,11 @@
             // 
             // fnameTextBox
             // 
+            fnameTextBox.Font = new Font("Times New Roman", 10.8F);
+            fnameTextBox.ForeColor = SystemColors.WindowFrame;
             fnameTextBox.Location = new Point(210, 55);
             fnameTextBox.Name = "fnameTextBox";
-            fnameTextBox.Size = new Size(184, 27);
+            fnameTextBox.Size = new Size(184, 28);
             fnameTextBox.TabIndex = 15;
             fnameTextBox.Text = "[الاسم]";
             fnameTextBox.TextAlign = HorizontalAlignment.Right;
@@ -432,29 +494,36 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(211, 9);
+            label7.Font = new Font("Times New Roman", 10.8F);
+            label7.ForeColor = SystemColors.MenuText;
+            label7.Location = new Point(227, 9);
             label7.Name = "label7";
-            label7.Size = new Size(151, 20);
+            label7.RightToLeft = RightToLeft.Yes;
+            label7.Size = new Size(132, 20);
             label7.TabIndex = 11;
             label7.Text = "الرقم المتسلسل للملف";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(6, 9);
+            label8.Font = new Font("Times New Roman", 10.8F);
+            label8.ForeColor = SystemColors.MenuText;
+            label8.Location = new Point(20, 9);
             label8.Name = "label8";
-            label8.Size = new Size(164, 20);
+            label8.RightToLeft = RightToLeft.Yes;
+            label8.Size = new Size(147, 20);
             label8.TabIndex = 12;
             label8.Text = "الرقم المتسلسل للشخص\n";
             // 
             // dataGridView1
             // 
+            dataGridView1.BackgroundColor = SystemColors.InactiveBorder;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(403, 6);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RightToLeft = RightToLeft.Yes;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(757, 488);
+            dataGridView1.Size = new Size(842, 570);
             dataGridView1.TabIndex = 5;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             // 
@@ -462,7 +531,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1212, 703);
+            BackColor = SystemColors.HighlightText;
+            ClientSize = new Size(1257, 727);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Controls.Add(cancelBtn);
