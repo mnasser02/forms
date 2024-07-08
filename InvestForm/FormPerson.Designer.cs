@@ -61,6 +61,8 @@
             label7 = new Label();
             label8 = new Label();
             dataGridView1 = new DataGridView();
+            fpBtn = new Button();
+            faceBtn = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -527,12 +529,40 @@
             dataGridView1.TabIndex = 5;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             // 
+            // fpBtn
+            // 
+            fpBtn.BackColor = SystemColors.GradientActiveCaption;
+            fpBtn.Font = new Font("Times New Roman", 13.8F);
+            fpBtn.ForeColor = SystemColors.Desktop;
+            fpBtn.Location = new Point(613, 680);
+            fpBtn.Name = "fpBtn";
+            fpBtn.Size = new Size(156, 35);
+            fpBtn.TabIndex = 6;
+            fpBtn.Text = "إدخال البصمة";
+            fpBtn.UseVisualStyleBackColor = false;
+            fpBtn.Click += fpBtn_Click;
+            // 
+            // faceBtn
+            // 
+            faceBtn.BackColor = SystemColors.GradientActiveCaption;
+            faceBtn.Font = new Font("Times New Roman", 13.8F);
+            faceBtn.ForeColor = SystemColors.Desktop;
+            faceBtn.Location = new Point(451, 680);
+            faceBtn.Name = "faceBtn";
+            faceBtn.Size = new Size(156, 35);
+            faceBtn.TabIndex = 7;
+            faceBtn.Text = "إدخال الوجه ";
+            faceBtn.UseVisualStyleBackColor = false;
+            faceBtn.Click += faceBtn_Click;
+            // 
             // FormPerson
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.HighlightText;
             ClientSize = new Size(1257, 727);
+            Controls.Add(faceBtn);
+            Controls.Add(fpBtn);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Controls.Add(cancelBtn);
@@ -564,7 +594,6 @@
         private TextBox lnameTextBox;
         private TextBox fnameTextBox;
         private TextBox serialTextBox;
-        private TextBox serpersTextBox;
         private Label label12;
         private ComboBox attrComboBox;
         private ComboBox residComboBox;
@@ -588,5 +617,8 @@
         private TextBox idnumTextBox;
         private Label label5;
         private TextBox archTextBox;
+        private TextBox serpersTextBox;
+        private Button fpBtn;
+        private Button faceBtn;
     }
 }

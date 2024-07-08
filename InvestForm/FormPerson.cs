@@ -31,7 +31,7 @@ namespace Forms {
             archTextBox.Enabled = false;
         }
 
-        
+
         private void InitComboBoxes() {
             populatenationComboBox();
             populateresidComboBox();
@@ -67,7 +67,7 @@ namespace Forms {
             string filePath = "../../../TABLES/attr.xlsx";
             string column = "C";
             var attr = ReadColumnFromExcel(filePath, column);
-           
+
             attrComboBox.DataSource = attr;
             attrComboBox.SelectedIndex = 0;
         }
@@ -117,7 +117,7 @@ namespace Forms {
 
             FileInfo fileInfo = new FileInfo(filePath);
             using (ExcelPackage package = new ExcelPackage(fileInfo)) {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; 
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                 int totalRows = worksheet.Dimension.Rows;
 
                 for (int row = 2; row <= totalRows; row++) {
@@ -137,7 +137,8 @@ namespace Forms {
             if (_serial == -1) {
                 var persons = await _context.Invpersons.ToListAsync();
                 dataGridView1.DataSource = persons;
-            } else {
+            }
+            else {
                 var persons = await _context.Invpersons.Where(p => p.Serial == _serial).ToListAsync();
                 dataGridView1.DataSource = persons;
             }
@@ -385,9 +386,14 @@ namespace Forms {
                 }
                 pbirthComboBox.Text = selectedRow.Cells["PBIRTH"].Value.ToString();
 
-                DateTime date;
-                DateTime.TryParseExact(selectedRow.Cells["DBIRTH"].Value.ToString(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
-                dbirthDateTimePicker.Value = date;
+                try {
+                    DateTime date;
+                    DateTime.TryParseExact(selectedRow.Cells["DBIRTH"].Value.ToString(), "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out date);
+                    dbirthDateTimePicker.Value = date;
+                }
+                catch (Exception) {
+                    dbirthDateTimePicker.Value = DateTime.Now;
+                }
 
                 residComboBox.Text = selectedRow.Cells["RESID"].Value.ToString();
                 adrsTextBox.Text = selectedRow.Cells["ADRS"].Value.ToString();
@@ -593,6 +599,29 @@ namespace Forms {
             }
             else {
                 archTextBox.Enabled = false;
+            }
+        }
+
+        private void fpBtn_Click(object sender, EventArgs e) {
+            if (dataGridView1.SelectedRows.Count > 0) {
+                var serpersNumber = (int)dataGridView1.SelectedRows[0].Cells["SERPERS"].Value;
+                //var form = new FormFingerPrint(serpersNumber);
+                //form.Show();
+            }
+            else {
+                MessageBox.Show("الرجاء تحديد شخص لإضافة بصماته");
+            }
+
+        }
+
+        private void faceBtn_Click(object sender, EventArgs e) {
+            if (dataGridView1.SelectedRows.Count > 0) {
+                var serpersNumber = (int)dataGridView1.SelectedRows[0].Cells["SERPERS"].Value;
+                //var form = new FormFace(serpersNumber);
+                //form.Show();
+            }
+            else {
+                MessageBox.Show("الرجاء تحديد شخص لإضافة صورته");
             }
         }
     }

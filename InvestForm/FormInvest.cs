@@ -31,8 +31,8 @@ namespace Forms {
         static List<string> ReadColumnFromExcel(string filePath, string columnName) {
             var data = new List<string>();
 
-            FileInfo fileInfo = new FileInfo(filePath);
-            using (ExcelPackage package = new ExcelPackage(fileInfo)) {
+            FileInfo fileInfo = new(filePath);
+            using (ExcelPackage package = new(fileInfo)) {
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                 int totalRows = worksheet.Dimension.Rows;
 
